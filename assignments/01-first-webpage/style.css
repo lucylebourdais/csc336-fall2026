@@ -1,0 +1,115 @@
+body {
+    background-color: #F0E9DA;
+    font-family: "Helvetica", arial, sans-serif;
+    color:#1C1F2E;
+}
+
+img {
+    border-radius: 50%; 
+    border: 5px solid #A33B3B;
+}
+
+h3 {
+    font-size: 35px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+p {
+    font-size: 25px;
+    line-height: 0.5;
+}
+
+b {
+    color:#A33B3B;
+}
+
+.leftAligned {
+    text-align: left;
+    margin-left: 2%;
+}
+.rightAligned {
+    text-align: right;
+    margin-right: 2%;
+}
+.centerAligned {
+    text-align: center;
+}
+
+.header {
+    margin-top: 100px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.subHeader {
+    margin-top: 50px;
+    margin-bottom: 150px;
+    font-size: 50px;
+}
+
+.navBar {
+    padding-right: 10%;
+    padding-left: 10%;
+    margin-top: -2%;
+}
+.navList {
+    font-size: 30px;
+    font-weight: 550;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.navList a {
+    text-decoration: none;
+    color: #A33B3B;
+    transition: font-size 0.3s ease, text-decoration 0.3s ease;
+}
+
+.navList a:hover {
+    font-size: 35px;
+}
+
+.yarnLink {
+    font-size: 25px;
+    font-weight: 550;
+    color: #A33B3B;
+    display: inline-block;
+    margin-top: -1.5%;
+    margin-bottom: 2%;
+    transition: font-size 0.3s ease, text-decoration 0.3s ease;
+}
+
+.yarnLink:hover {
+    font-size: 28px;
+    text-decoration: underline;
+}
+
+.dotted {
+    border-top: 5px dotted #A33B3B;
+}
+
+#pageTitle {
+    text-emphasis: double-circle #A33B3B;
+    font-size: 100px;
+    font-weight: 800;
+    font-family: "Georgia", bookman, serif;
+}
+
+#ravelryLink {
+    font-size: 40px;
+    font-weight: 550;
+    color: #1C1F2E;
+    display: inline-block;
+    padding-bottom: 10%;
+    margin-top: -2%;
+    margin-bottom: -5%;
+    text-decoration: none;
+    transition: font-size 0.3s ease;
+}
+
+#ravelryLink:hover {
+    font-size: 42px;
+}
