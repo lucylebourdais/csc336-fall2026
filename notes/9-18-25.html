@@ -5,18 +5,52 @@
 
     <body>
 
-    </body>
+        <script>
+            //line comment
+            /*
+            block comment 
+            */
+            console.log("Hello, world!");
+            let foo = 9.4;
+            let bar = 3.2;
+            let sum = foo + bar;
+            console.log(sum);
 
-<script>
-    //line comment
-    /*
-     block comment 
-    */
-    console.log("Hello, world!");
-    let foo = 9.4;
-    let bar = 3.2;
-    let baz = foo + bar;
-    console.log(baz);
-</script>
+            if (sum > 20) {
+                console.log(sum + " is greater than 20");
+            } else{
+                console.log(sum + " is less than or equal to 20");
+            }
 
+            let i = 0;
+            while(i<20) {
+                console.log("hi");
+                i++;
+                //i  += 1;
+                //i = i + 1;
+            }
+
+            for (let i = 0; i < 20; i++) {
+                console.log("hi");
+            }
+
+            function add3(a,b,c) {
+                let sumOfParams = a + b + c;
+                return sumOfParams;
+            }
+
+            console.log(add3(1,6,9));
+
+            //empty object
+            let obj = {};
+            obj.x = 10;
+            obj.log = function(a) {
+                console.log(a);
+            }
+            obj.log("hello");
+        </script>
+
+        </body>
+        
 </html>
+        

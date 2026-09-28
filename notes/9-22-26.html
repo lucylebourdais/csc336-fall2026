@@ -1,0 +1,60 @@
+<html>
+    <head>
+        
+    </head>
+
+    <body>
+
+        <div id="root"></div>
+
+        <script>
+
+             //1. Getting element
+            let rootDiv = document.querySelector("#root"); 
+
+            function addHeadingToElement(element,text) {
+                //2. Creating HTML element via code
+                let newDiv = document.createElement("h1");
+                newDiv.innerHTML = text;
+
+                //3. Adding element to the page
+                element.append(newDiv);     
+        }
+
+        // call function to add heading to rootDiv
+        for (let i = 0; i < 5; i++) {
+            addHeadingToElement(rootDiv, "Hello, world!");
+        }
+
+        let allPokemon = [];
+        let pokemon = {};
+            pokemon.name = "Pikachu";
+            pokemon.description = "Electric";
+            pokemon.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png";
+
+        allPokemon.push({
+            name: "Pikachu",
+            description: "Electric",
+            img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon
+        });
+
+        function addPokemonToRoot(pokemon){
+            let rootDiv = document.querySelector("#root");
+            let pokemonDiv = document.createElement("div");
+            let nameHeading = document.createElement("h2");
+            let infoDiv = document.createElement("div");
+            nameHeading.innerHTML = pokemon.name;
+            infoDiv.append(nameHeading);
+            
+            let descriptionParagraph = document.createElement("p");
+            descriptionParagraph.innerHTML = pokemon.description;
+            infoDiv.append(descriptionParagraph);
+
+            pokemonDiv.append(infoDiv);
+            rootDiv.append(pokemonDiv);
+        }
+        addPokemonToRoot(allPokemon[1]);
+        </script>
+
+    </body>
+</html>

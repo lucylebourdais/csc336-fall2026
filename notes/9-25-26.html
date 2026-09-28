@@ -1,0 +1,80 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+
+        <div id="buttonDataDiv"></div>
+        
+        <div id="buttonsDiv"></div>
+        <input id="inputElement" type="text">
+
+        <div id="roomRoot"></div>
+        <script>
+
+            let buttonData = ["1", "2", "3", "4"];
+
+            // get refs to DOM elements
+            let buttonDataDiv = document.querySelector("#buttonDataDiv");
+            let buttonsDiv = document.querySelector("#buttonsDiv");
+            let inputElement = document.querySelector("#inputElement");
+
+            // define event listener for the buttons
+            function buttonClick(e) {
+                console.log(e);
+                buttonDataDiv.innerHTML = e.target.innerHTML;
+                console.log(inputElement.value);
+                if (inputElement.value === "PASSWORD") {
+                    console.log("Password is correct")
+                }
+                else {
+                    console.log("Password is incorrect");
+                }
+
+            }
+
+            // for i in range(len(buttonData)) 
+            // let i = 0
+            // while(i < buttonData.length)
+            for (let i = 0; i < buttonData.length; i++) {
+                let buttonObj = document.createElement("button");
+                buttonObj.innerHTML = buttonData[i];
+                buttonObj.addEventListener("click", buttonClick);
+                buttonsDiv.append(buttonObj);
+            }
+
+
+            let roomRoot = document.querySelector("#roomRoot");
+            let rooms = {
+                entry: {
+                    name: "Entry Room",
+                    description: "This is where the game starts.",
+                    linkedRooms: ["classRoom"]
+                }
+            }
+            let currentRoom = rooms["entry"];
+
+            function navButtonClicked(e) {
+                console.log(e.target.innerHTML);
+            }
+
+            function renderRoom(room) {
+                let roomTitle = document.createElement("h1");
+                roomTitle.innerHTML = room.name;
+                roomRoot.append(roomTitle);
+
+                let description = document.createElement("p");
+                description.innerHTML = room.description;
+                roomRoot.append(description);
+
+                for (let i = 0; i < room.linkedRooms.length; i++) {
+                    let navButton = document.createElement("button");
+                    navButton.innerHTML = room.linkedRooms[i];
+                    navButton.addEventListener("click", navButtonClicked() {
+                }   
+            }
+            renderRoom(currentRoom);
+
+        </script>
+    </body>
+</html>
