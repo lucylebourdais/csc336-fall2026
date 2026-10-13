@@ -1,0 +1,61 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <div id="currentUsersDiv"></div>
+
+        <div id="addUserDiv">
+        <form id="userDataForm"> 
+            <input id="nameInputField" type="text" placeholder="Input name...">
+            <input type="submit">
+        </form>
+        </div>
+
+        <script>
+            let userData = [];
+
+            let userForm = document.querySelector("#userDataForm");
+            let nameInputField = document.querySelector("#nameInputField");
+            let currentUsersDiv = document.querySelector("#currentUsersDiv");
+
+            let localStorageKey = "users";
+
+            document.addEventListener("DOMContentLoaded", (event) => {
+                // your code runs here when the DOM is fully parsed
+                let localStorageData = localStorage.getItem(localStorageKey);
+                console.log(localStorageData);
+                // parse the string of data back into js data
+                userData = JSON.parse(localStorageData);
+                updateUserList(userData);
+            });
+
+            userForm.addEventListener("submit", (event) => {
+                event.preventDefault(); //prevents page from refreshing
+
+                userData.push(nameInputField.value);
+                nameInputField.value = "";
+
+                console.log(userData);
+                updateUserList(userData);
+            });
+
+            function updateUserList(data) {
+                currentUsersDiv.innerHTML = "";
+                let userListElement = document.createElement("ul");
+                currentUsersDiv.append(userListElement);
+                data.forEach((user) => {
+                    let listItem = document.createElement("li");
+                    userListElement.append(listItem);
+                    listItem.innerHTML = user;
+                });
+
+                // update local storage with new data
+                let jsonStringVerOfData = JSON.stringify(data);
+                console.log(jsonStringVerOfData);
+                console.log(data);
+
+                localStorage.setItem(localStorageKey, jsonStringVerOfData);
+            }
+        </script>
+    </body>
+</html>
