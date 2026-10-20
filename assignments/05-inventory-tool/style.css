@@ -50,20 +50,37 @@ h1{
     font-size: 15px;
 }
 
+.buttons {
+    background-color: #bcd9e0;
+}   
+
+#root {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
 #cart {
     display: flex;
     justify-content: flex-end;
 }
 
-#selectBtn {
-    padding: 1%;
-    text-align: center;
-    margin-left: 10px;
-    background-color: #D9BCB8;
-    
-}
 
 #buttonDiv {
     display: flex;
     justify-content: flex-end;
+}
+
+#addProductForm label {
+    display: block;
+}
+
+#addProductDiv {
+    display: flex;
+    justify-content: center;
+}
+
+#addToCart {
+    background-color: #bcd9e0;
 }

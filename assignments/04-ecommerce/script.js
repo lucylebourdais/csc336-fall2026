@@ -1,12 +1,8 @@
-let cartData = 0;
-let total = 0;
-let cart = document.getElementById("cart");
-cart.innerHTML = "Total: " + total + " (" + cartData + " items)";
+let cart = document.getElementById("cart"); 
+let selectedProducts = [];
+let cartProducts = [];
 
 let card = document.querySelector(".card");
-let selectBtn = document.getElementById("selectBtn");
-let selectedProducts = [];
-
 let categoryFilter = document.getElementById("filter");
 
 let catalog = {
@@ -60,7 +56,15 @@ let catalog = {
     }
 };
 
-function forEach(product) {
+function updateCart() {
+    let total = 0;
+    for (let product of cartProducts) {
+        total += product.price;
+    }
+    cart.innerHTML = "Total: "+ "$" + total.toFixed(2) + " (" + cartProducts.length + " items)";
+}
+
+function visualizeProduct(product) {
     let rootDiv = document.querySelector("#root");
 
     let productDiv = document.createElement("div");
@@ -80,16 +84,11 @@ function forEach(product) {
     let productCategory = document.createElement("p");
     let cartButton = document.createElement("button");
     cartButton.classList.add("cartButton");
-    let selectButton = document.createElement("button");
-    selectButton.classList.add("selectButton");
-    selectButton.innerHTML = "Select";
-    selectButton.addEventListener("click", selectProducts);
 
     cartButton.innerHTML = "Add to Cart";
     cartButton.addEventListener("click", function() {
-        cartData++;
-        total += product.price;
-        cart.innerHTML = "Total: " + total.toFixed(2) + " (" + cartData + " items)";
+        cartProducts.push(product);
+        updateCart();
     });
     productName.innerHTML = product.name;
     productDescription.innerHTML = product.description;
@@ -100,7 +99,23 @@ function forEach(product) {
     infoDiv.append(productPrice);
     infoDiv.append(productCategory);
     infoDiv.append(cartButton);
-    infoDiv.append(selectButton);
+
+    let selectCheckbox = document.createElement("input");
+    selectCheckbox.type = "checkbox";
+    selectCheckbox.classList.add("selectProduct");
+    selectCheckbox.addEventListener("change", function() {
+        if (selectCheckbox.checked) {
+            selectedProducts.push(product); 
+            productDiv.classList.add("selected");
+        } else{
+            let index = selectedProducts.indexOf(product);
+            if (index > -1) {
+                selectedProducts.splice(index, 1); 
+            } 
+            productDiv.classList.remove("selected");
+        }
+    });
+    infoDiv.append(selectCheckbox);
 
     productDiv.append(infoDiv);
     
@@ -108,32 +123,21 @@ function forEach(product) {
 
 }
 
-function selectProducts(event) {
-    let button = event.target;
-    let card = button.closest(".productData");
-    card.classList.toggle("selected");
-
-    if (card.classList.contains("selected")) {
-        button.innerHTML = "Deselect";
-    } else {
-        button.innerHTML = "Select";
-    }
-
-    let count = document.querySelectorAll(".selected").length;
-    selectBtn.disabled = count === 0;
-}
-
 function addSelectedToCart() {
-    let selectedCards = document.querySelectorAll(".selected");
+    for (let product of selectedProducts) {
+        cartProducts.push(product);
+    }
+    selectedProducts = [];
+    document.querySelectorAll(".selectProduct").forEach(function(box) {
+        box.checked = false;
+    });
+    document.querySelectorAll(".selected").forEach(function(card) {
+        card.classList.remove("selected");
+    });
+    updateCart();
+    }
+    addToCart.addEventListener("click", addSelectedToCart);
 
-    for (let i = 0; i < selectedCards.length; i++) {
-        total += selectedCards[i].product.price;
-        cartData++;
-        selectedCards[i].classList.remove("selected");
-    }   
-    cart.innerHTML = "Total: " + total.toFixed(2) + " (" + cartData + " items)";
-    selectBtn.disabled = true;
-}
 
 let categories = ["All", "Wool", "Alpaca", "Cotton", "Llama", "Bamboo", "Camel"];
 
@@ -163,15 +167,15 @@ function createFilter() {
         }
     });
 }
-selectBtn.addEventListener("click", addSelectedToCart);
-
 
 createFilter();
 
+updateCart();
 
-forEach(catalog["fika"]);
-forEach(catalog["kumo"]);
-forEach(catalog["verano"]);
-forEach(catalog["lama"]);
-forEach(catalog["bambok"]);
-forEach(catalog["camelDk"]);
+
+visualizeProduct(catalog["fika"]);
+visualizeProduct(catalog["kumo"]);
+visualizeProduct(catalog["verano"]);
+visualizeProduct(catalog["lama"]);
+visualizeProduct(catalog["bambok"]);
+visualizeProduct(catalog["camelDk"]);
