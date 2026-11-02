@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <script>
+            let fetchResponse = fetch("https://dog.ceo/api/breeds/image/random");
+            fetchResponse.then((data) => {
+                return data.json();
+            }).then((data) => {
+                console.log("complete json has been returned from server");
+                console.log(data);
+                let bodyElement = document.querySelector("body");
+                for (let i = 0; i < 5; i++) {
+                    let dogImg = document.createElement("img");
+                    dogImg.src = data.message;
+                    dogImg.width = Math.random() * 200;
+                    bodyElement.append(dogImg);
+                }
+                // let dogImg = document.createElement("img");
+                // dogImg.src = data.message;
+                // bodyElement.append(dogImg);
+            });
+        </script>
+    </body>
+</html>

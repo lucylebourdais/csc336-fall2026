@@ -1,0 +1,49 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <div id="timeOutFnDiv">Set Timeout hasnt run yet</div>
+        <script>
+            let timeoutDiv = document.querySelector("#timeOutFnDiv");
+
+            setTimeout(() => {
+                timeoutDiv.innerHTML = "The function has run";
+            }, 5000);
+
+            function fakePromise(ms) {
+                let savedCallback = null;
+                // Define what "resolve" does
+                setTimeout(() => {
+                    savedCallback();
+                }, ms);
+
+                return {
+                    //function(callback) {
+                    then: (callback) => {
+                        savedCallback = callback;
+                    }
+                }
+            }
+
+            let wait = fakePromise(2000);
+            wait.then(() => {
+                console.log("Promise resolved!");
+            });
+
+            //implementing wait using real promises
+
+            function wait(ms) {
+                //built in class Promise
+                return new Promise((resolve) => {
+                    //code will determine whether promise has been resolved
+                    setTimeout(resolve, ms);
+                });
+            }
+
+            wait(4000).then(() => {
+                console.log("Real promise is resovled!");
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <script>
+            let promise = fetch("https://pokeapi.co/api/v2/pokemon/1000"); //fetch returns a promise
+            console.log("A:This will run immediately after fetch()")
+
+            // let promiseResponse = promise.then((data) => {
+            //     console.log("B: fetch() promise resolved");
+            //     return data.json();
+            // });
+            // //A will print before B because .then runs when promise is resolved
+
+            // promiseResponse.then((json) => {
+            //     console.log(json);
+            // });
+
+            promise.then((data)=>{
+                console.log("promise resolved");
+                return data.json();
+            }).then((json) => {
+                console.log(json);
+            });
+
+            async function getPokemon(id) {
+                //pauses execution of function until promise resolves
+                let response = await fetch("https://pokeapi.co/api/v2/pokemon/" + id);
+                let json = await response.json();
+                return json;
+            }
+            getPokemon(3);
+            getPokemon(5);
+        </script>
+    </body>
+</html>
