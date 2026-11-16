@@ -62,7 +62,7 @@ async function setup() {
     background(100);
 
     //loading the fighters from images
-    imgA = await loadImage("fighterA.PNG");
+    imgA = await loadImage("fighterA.png");
     imgB = await loadImage("fighterB.png");
 
     fighterA = new Fighter(200, 300, imgA);
